@@ -1,5 +1,4 @@
 const cartArray = JSON.parse (localStorage.getItem('checkoutarray'))
-console.log (cartArray)
 const itemsDiv = document.querySelector ('#items-div')
 const h6 = document.querySelector ('h6')
 let totalAmount = 0;
@@ -49,10 +48,12 @@ function addQuantity(index) {
 }
 
 function subtractQuantity(index) {
-    cartArray[index].quantity -= 1
-    itemsDiv.innerHTML = ''
-    totalAmount = 0
-    renderCart()
-    localStorage.setItem ('checkoutarray' , JSON.stringify(cartArray))
+    if (cartArray[index].quantity > 0) {
+        cartArray[index].quantity -= 1
+        itemsDiv.innerHTML = ''
+        totalAmount = 0
+        renderCart()
+        localStorage.setItem ('checkoutarray' , JSON.stringify(cartArray))
+    }
 }
 
